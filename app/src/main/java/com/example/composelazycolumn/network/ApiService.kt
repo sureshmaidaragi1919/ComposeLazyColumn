@@ -1,4 +1,4 @@
-package com.example.composelazycolumn
+package com.example.composelazycolumn.network
 
 import com.example.composelazycolumn.data.Post
 import retrofit2.Response

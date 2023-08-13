@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.composelazycolumn.MainActivityViewModel
+import com.example.composelazycolumn.viewmodel.MainActivityViewModel
 import com.example.composelazycolumn.data.Post
 import com.example.composelazycolumn.data.PostItem
 

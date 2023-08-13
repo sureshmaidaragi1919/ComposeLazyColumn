@@ -1,5 +1,6 @@
-package com.example.composelazycolumn
+package com.example.composelazycolumn.repo
 
+import com.example.composelazycolumn.network.ApiService
 import com.example.composelazycolumn.data.Post
 import retrofit2.Response
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.composelazycolumn
+package com.example.composelazycolumn.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +14,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.composelazycolumn.ui.PostContainerScreen
+import com.example.composelazycolumn.viewmodel.MainActivityViewModel
 import com.example.composelazycolumn.ui.theme.ComposeLazyColumnTheme
 import dagger.hilt.android.AndroidEntryPoint
 
