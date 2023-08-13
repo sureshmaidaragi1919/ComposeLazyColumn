@@ -9,7 +9,7 @@ interface ApiService {
         const val BASE_URL = "https://jsonplaceholder.typicode.com"
     }
 
-    @GET("/posts11")
+    @GET("/posts")
     suspend fun getPosts(): Response<Post>
 
 }
