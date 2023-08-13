@@ -83,6 +83,9 @@ dependencies {
     testImplementation("io.mockk:mockk-agent:1.13.5")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
 
+    //Image loading
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

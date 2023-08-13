@@ -1,5 +1,6 @@
 package com.example.composelazycolumn.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,12 +24,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.composelazycolumn.viewmodel.MainActivityViewModel
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.example.composelazycolumn.R
 import com.example.composelazycolumn.data.Post
 import com.example.composelazycolumn.data.PostItem
+import com.example.composelazycolumn.viewmodel.MainActivityViewModel
 
 @Composable
 fun PostContainerScreen(onItemClick: (PostItem) -> Unit) {
@@ -81,7 +85,7 @@ fun ShowList(data: Post, onItemClick: (PostItem) -> Unit) {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
 
@@ -96,11 +100,18 @@ fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = item.title.toString(),
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.absolutePadding(left = 10.dp, right = 10.dp, top = 10.dp)
-            )
+            Row() {
+                Image(
+                    painter = painterResource(id = R.mipmap.ic_flower), contentDescription = "",
+                    modifier = Modifier.absolutePadding(left = 10.dp, right = 6.dp, top = 12.dp)
+                )
+                Text(
+                    text = item.title.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.absolutePadding(right = 10.dp, top = 10.dp)
+                )
+
+            }
 
             Text(
                 text = item.body.toString(),
