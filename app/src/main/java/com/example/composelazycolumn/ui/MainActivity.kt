@@ -14,8 +14,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import com.example.composelazycolumn.viewmodel.MainActivityViewModel
 import com.example.composelazycolumn.ui.theme.ComposeLazyColumnTheme
+import com.example.composelazycolumn.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,23 +28,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeLazyColumnTheme {
                 Scaffold(topBar = {
-                    TopAppBar(
-
-                        title = {
-                            Text(text = "Lazy column")
-                        },
-                        navigationIcon = {
-                            IconButton(onClick = { }) {
-                                Icon(Icons.Filled.Menu, "")
-                            }
-                        },
-                        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-
-                        )
+                    TopAppBar(title = {
+                        Text(text = "Lazy column")
+                    }, navigationIcon = {
+                        IconButton(onClick = { }) {
+                            Icon(Icons.Filled.Menu, "")
+                        }
+                    }, scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+                    )
                 }, content = {
-                    PostContainerScreen(onItemClick = {
-                        Log.d("SURESH", "Fucked asshole ${it.title}")
-                    })
+                    PostContainerScreen { item ->
+                        Log.d("SURESH", "title ${item.title}")
+                    }
                     it.calculateBottomPadding()
 
                 })

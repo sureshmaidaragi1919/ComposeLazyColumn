@@ -3,11 +3,11 @@ package com.example.composelazycolumn.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -77,7 +77,11 @@ fun ShowLoader() {
 @Composable
 fun ShowList(data: Post, onItemClick: (PostItem) -> Unit) {
 
-    LazyColumn(modifier = Modifier.absolutePadding(top = 70.dp)) {
+    LazyColumn(
+        modifier = Modifier.absolutePadding(top = 70.dp),
+        contentPadding = PaddingValues(12.dp),//margin at start and end
+        verticalArrangement = Arrangement.spacedBy(10.dp) //space between each items in list
+    ) {
         items(data) { item ->
             ListItemView(item = item, onItemClick = onItemClick)
         }
@@ -90,9 +94,6 @@ fun ShowList(data: Post, onItemClick: (PostItem) -> Unit) {
 fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
 
     Card(elevation = CardDefaults.cardElevation(),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp, horizontal = 10.dp),
         shape = RoundedCornerShape(12.dp),
         onClick = {
             onItemClick(item)
@@ -100,7 +101,7 @@ fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row() {
+            Row {
                 Image(
                     painter = painterResource(id = R.mipmap.ic_flower), contentDescription = "",
                     modifier = Modifier.absolutePadding(left = 10.dp, right = 6.dp, top = 12.dp)
@@ -117,7 +118,7 @@ fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
                 text = item.body.toString(),
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.absolutePadding(
-                    left = 10.dp, right = 10.dp, top = 10.dp, bottom = 10.dp
+                        left = 10.dp, right = 10.dp, top = 10.dp, bottom = 10.dp
                 )
             )
         }
