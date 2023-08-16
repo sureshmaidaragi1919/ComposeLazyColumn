@@ -2,6 +2,7 @@ package com.example.composelazycolumn.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -21,6 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +36,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.composelazycolumn.R
 import com.example.composelazycolumn.data.Post
 import com.example.composelazycolumn.data.PostItem
@@ -55,7 +62,8 @@ fun PostContainerScreen(onItemClick: (PostItem) -> Unit) {
         is MainActivityViewModel.DataLoadState.Success -> {
             ShowList(
                 data = (dataState as MainActivityViewModel.DataLoadState.Success).data as Post,
-                onItemClick = onItemClick
+                onItemClick = onItemClick,
+                viewModel = viewModel
             )
         }
     }
@@ -74,36 +82,56 @@ fun ShowLoader() {
 }
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ShowList(data: Post, onItemClick: (PostItem) -> Unit) {
+fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivityViewModel) {
 
-    LazyColumn(
-        modifier = Modifier.absolutePadding(top = 70.dp),
-        contentPadding = PaddingValues(12.dp),//margin at start and end
-        verticalArrangement = Arrangement.spacedBy(10.dp) //space between each items in list
+    var refreshing by remember { mutableStateOf(false) }
+
+    val state = rememberPullRefreshState(refreshing = refreshing, onRefresh = {
+        refreshing = true
+        viewModel.refresh()
+        refreshing = false
+
+    })
+
+    Box(
+        modifier = Modifier.pullRefresh(state)
     ) {
-        items(data) { item ->
-            ListItemView(item = item, onItemClick = onItemClick)
+        LazyColumn(
+            modifier = Modifier.absolutePadding(top = 70.dp),
+            contentPadding = PaddingValues(12.dp),//margin at start and end
+            verticalArrangement = Arrangement.spacedBy(10.dp), //space between each items in list
+        ) {
+            items(data) { item ->
+                ListItemView(item = item, onItemClick = onItemClick)
+            }
         }
+        PullRefreshIndicator(
+            refreshing = refreshing,
+            state = state,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
+
     }
+
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
 
-    Card(elevation = CardDefaults.cardElevation(),
-        shape = RoundedCornerShape(12.dp),
-        onClick = {
-            onItemClick(item)
-        }) {
+    Card(elevation = CardDefaults.cardElevation(), shape = RoundedCornerShape(12.dp), onClick = {
+        onItemClick(item)
+    }) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
             Row {
                 Image(
-                    painter = painterResource(id = R.mipmap.ic_flower), contentDescription = "",
+                    painter = painterResource(id = R.mipmap.ic_flower),
+                    contentDescription = "",
                     modifier = Modifier.absolutePadding(left = 10.dp, right = 6.dp, top = 12.dp)
                 )
                 Text(
@@ -118,7 +146,7 @@ fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
                 text = item.body.toString(),
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.absolutePadding(
-                        left = 10.dp, right = 10.dp, top = 10.dp, bottom = 10.dp
+                    left = 10.dp, right = 10.dp, top = 10.dp, bottom = 10.dp
                 )
             )
         }

@@ -22,6 +22,9 @@ class MainActivityViewModel @Inject constructor(private val repository: PostRepo
         fetchData()
     }
 
+    fun refresh(){
+        fetchData()
+    }
     private fun fetchData() {
         _dataLoadStateFlow.value = DataLoadState.Loading
         viewModelScope.launch(Dispatchers.IO) {
