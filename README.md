@@ -20,3 +20,5 @@ This app basically helps to achieve not depend on Recyclerview and Recyclerview 
 ### Preview
  
 <img src="https://github.com/sureshmaidaragi1919/ComposeLazyColumn/assets/28126457/8035ce47-412a-4d7b-8996-541496d1f27e" width="300">
+
+<img src="https://github.com/sureshmaidaragi1919/ComposeLazyColumn/assets/28126457/6725ed32-5738-4ecd-8ec2-aed717831602" width="300">
