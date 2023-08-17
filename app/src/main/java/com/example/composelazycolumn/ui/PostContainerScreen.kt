@@ -46,7 +46,6 @@ fun PostContainerScreen(onItemClick: (PostItem) -> Unit) {
 
     val viewModel: MainActivityViewModel = viewModel()
     val dataState by viewModel.dataLoadStateFlow.collectAsState(initial = MainActivityViewModel.DataLoadState.Start)
-
     when (dataState) {
         is MainActivityViewModel.DataLoadState.Failed -> {
             ShowError((dataState as MainActivityViewModel.DataLoadState.Failed).msg)

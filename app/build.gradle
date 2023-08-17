@@ -63,7 +63,8 @@ dependencies {
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
-    implementation 'androidx.compose.material:material-android:1.5.0'
+    //For pull to refresh in compose
+    implementation 'androidx.compose.material:material-android:1.6.0-alpha03'
 
 
     //Retrofit
@@ -86,6 +87,9 @@ dependencies {
 
     //Image loading
     implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
+    implementation "com.google.accompanist:accompanist-permissions:0.33.0-alpha"
+
 
 
     testImplementation 'junit:junit:4.13.2'

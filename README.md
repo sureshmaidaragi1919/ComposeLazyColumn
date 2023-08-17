@@ -11,6 +11,8 @@ What used here
 4. Used Coroutine to do job in different thread
 5. Android-Compose to create UI's
 6. No xml codes 100% compose
+7. Pull to refresh
+8. Compose Multiple Permission Request
 
 
 ### Preview
