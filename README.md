@@ -1,9 +1,8 @@
 # Android Compose with MVVM
 
 Its a simple application  to replace Android recycler view with LazyColumn from Android-Compose, built on MVVM architecture
-What used here
 
-
+What you learn from this project
 1. **Retrofit** to make API calls
 2. **Hilt** dependency to get DI
 3. Used **ViewModel**
@@ -12,6 +11,11 @@ What used here
 6. No xml codes 100% compose
 7. **Pull to refresh**
 8. **Compose Multiple Permission** Request
+
+Next todo's
+1. Build details screen in compose with **collapsing toolbar** and back navigations 
+3. Turn the project into **clean architecture**
+2. write **Unit tests** for viewmodel, repository, usecase using mockk dep
 
 
 This app basically helps to achieve not depend on Recyclerview and Recyclerview viewholder to show list of items using compose
