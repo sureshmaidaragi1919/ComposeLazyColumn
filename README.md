@@ -14,8 +14,10 @@ Its a simple application  to replace Android recycler view with LazyColumn from 
 
 ### todo's
 1. Build details screen in compose with collapsing toolbar and back navigations 
-3. Turn the project into clean architecture
-2. write Unit tests for viewmodel, repository, usecase using mockk dep
+2. Pagination using the paging library ex : [ref](https://proandroiddev.com/pagination-in-jetpack-compose-with-and-without-paging-3-e45473a352f4)
+2. Turn the project into clean architecture
+3. write Unit tests for viewmodel, repository, use-case using [mockk dep](https://mockk.io/ANDROID.html)
+4. Foldable device support and with different font text styling
 
 
 This app basically helps to achieve not depend on Recyclerview and Recyclerview viewholder to show list of items using compose
