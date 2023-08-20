@@ -85,6 +85,7 @@ fun ShowLoader() {
 @Composable
 fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivityViewModel) {
 
+    var sortedData = remember {data.sortedBy { it.title }} //we can move this out of compose itself or put into viewmodel or repo
     var refreshing by remember { mutableStateOf(false) }
 
     val state = rememberPullRefreshState(refreshing = refreshing, onRefresh = {
@@ -102,7 +103,7 @@ fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivit
             contentPadding = PaddingValues(12.dp),//margin at start and end
             verticalArrangement = Arrangement.spacedBy(10.dp), //space between each items in list
         ) {
-            items(data) { item ->
+            items(sortedData) { item ->
                 ListItemView(item = item, onItemClick = onItemClick)
             }
         }
