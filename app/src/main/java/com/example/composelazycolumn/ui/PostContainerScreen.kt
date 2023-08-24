@@ -75,17 +75,17 @@ fun ShowLoader() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
-        CircularProgressIndicator(modifier = Modifier.then(Modifier.size(60.dp)))
-
+        CircularProgressIndicator(modifier = Modifier.size(60.dp))
     }
 }
 
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivityViewModel) {
+private fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivityViewModel) {
 
-    var sortedData = remember {data.sortedBy { it.title }} //we can move this out of compose itself or put into viewmodel or repo
+    var sortedData =
+        remember { data.sortedBy { it.title } } //we can move this out of compose itself or put into viewmodel or repo
     var refreshing by remember { mutableStateOf(false) }
 
     val state = rememberPullRefreshState(refreshing = refreshing, onRefresh = {
@@ -120,7 +120,7 @@ fun ShowList(data: Post, onItemClick: (PostItem) -> Unit, viewModel: MainActivit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
+private fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
 
     Card(elevation = CardDefaults.cardElevation(), shape = RoundedCornerShape(12.dp), onClick = {
         onItemClick(item)
@@ -154,7 +154,7 @@ fun ListItemView(item: PostItem, onItemClick: (PostItem) -> Unit) {
 }
 
 @Composable
-fun ShowError(msg: String) {
+private fun ShowError(msg: String) {
     Row(
         modifier = Modifier.fillMaxSize(),
         verticalAlignment = Alignment.CenterVertically,

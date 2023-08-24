@@ -23,7 +23,7 @@
         android:theme="@style/Theme.ComposeLazyColumn"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.StarterActivity"
             android:exported="true"
             android:theme="@style/Theme.ComposeLazyColumn">
             <intent-filter>
@@ -32,6 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ListActivity" />
+        <activity android:name=".ui.PermissionRequestActivity" />
     </application>
 
 </manifest>
