@@ -1,4 +1,4 @@
-# Android Compose with MVVM
+# Android Compose with MVVM, Retrofit, Hilt,
 
 Its a simple application  to replace Android recycler view with LazyColumn from Android-Compose, built on MVVM architecture
 
